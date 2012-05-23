@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<title>test</title>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.7.1.js" type="text/javascript"></script>  
+<script type="text/javascript" src="jquery.transform.js"></script>
+<script>
+$(function () {
+
+	function action() {
+		var angle = parseInt($('#angle').val(), 10),
+			vreflect = $('#vreflect').is(':checked'),
+			hreflect = $('#hreflect').is(':checked'),
+			$cow = $('#cow');
+		
+		if (isNaN(angle)) {
+			angle = 0;
+		}
+		
+		$cow.transform({
+			angle: angle, 
+			vreflect: vreflect, 
+			hreflect: hreflect
+		});
+	}
+
+	$('#angle').keyup(action);
+	$('#vreflect, #hreflect').change(action);
+});
+</script>
+</head>
+
+<body>
+	<h1>test</h1>
+	<div>
+		<img id="cow" src="http://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/CH_cow_2.jpg/250px-CH_cow_2.jpg" alt="" />
+	</div>
+	<div>
+		<label>angle:</label><input id="angle" />
+	</div>
+	<div>
+		<label>reflect vertical:</label><input id="vreflect" type="checkbox" />
+	</div>
+	<div>
+		<label>reflect horizontal:</label><input id="hreflect" type="checkbox" />
+	</div>
+</body>
+</html>
