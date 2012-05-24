@@ -59,8 +59,10 @@
 			webkitTransform += ' scaleY(-1)';
 			oTransform += ' scaleY(-1)';
 			transform += ' scaleY(-1)';
-			msFilter += ' flipv';
-			filter += ' flipv';
+			
+			// IE flip Image w/ matrix transformation
+			M12 = -M12;
+			M22 = -M22;
 		}
 		
 		if (hreflect) {
@@ -68,12 +70,15 @@
 			webkitTransform += ' scaleX(-1)';
 			oTransform += ' scaleX(-1)';
 			transform += ' scaleX(-1)';
-			msFilter += ' fliph';
-			filter += ' fliph';
+			
+			// IE flip Image w/ matrix transformation
+			M11 = -M11;
+			M21 = -M21;
 		}
 		
 		// must be last for IE... :/
-		if (angle !== 0 && $.browser.msie && $.browser.version < 9) {
+		if ($.browser.msie && $.browser.version < 9 &&
+				(angle !== 0 || hreflect || vreflect)) {
 			msFilter += ' progid:DXImageTransform.Microsoft.Matrix(M11=' + M11 + ', M12=' + M12 + ', M21=' + M21 + ', M22=' + M22 + ', SizingMethod=\'auto expand\')';
 			filter += ' progid:DXImageTransform.Microsoft.Matrix(M11=' + M11 + ', M12=' + M12 + ', M21=' + M21 + ', M22=' + M22 + ', SizingMethod=\'auto expand\')';
 		}
