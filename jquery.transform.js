@@ -19,10 +19,10 @@
 			var $this = $(this),
 				data = $this.data();
 			
-			if (!data['initWidth']) {
+			if (!data.initWidth) {
 				$this.data('initWidth', $this.outerWidth());
 			}
-			if (!data['initHeight']) {
+			if (!data.initHeight) {
 				$this.data('initHeight', $this.outerHeight());
 			}
 			
