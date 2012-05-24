@@ -73,7 +73,7 @@
 		}
 		
 		// must be last for IE... :/
-		if (angle !== 0) {
+		if (angle !== 0 && $.browser.msie && $.browser.version < 9) {
 			msFilter += ' progid:DXImageTransform.Microsoft.Matrix(M11=' + M11 + ', M12=' + M12 + ', M21=' + M21 + ', M22=' + M22 + ', SizingMethod=\'auto expand\')';
 			filter += ' progid:DXImageTransform.Microsoft.Matrix(M11=' + M11 + ', M12=' + M12 + ', M21=' + M21 + ', M22=' + M22 + ', SizingMethod=\'auto expand\')';
 		}
