@@ -9,6 +9,7 @@ $(function () {
 
 	function action() {
 		var angle = parseInt($('#angle').val(), 10),
+			zoom = parseFloat($('#zoom').val()),
 			vreflect = $('#vreflect').is(':checked'),
 			hreflect = $('#hreflect').is(':checked'),
 			$cow = $('#cow');
@@ -16,15 +17,19 @@ $(function () {
 		if (isNaN(angle)) {
 			angle = 0;
 		}
+		if (isNaN(zoom)) {
+			zoom = 1;
+		}
 		
 		$cow.transform({
 			angle: angle, 
 			vreflect: vreflect, 
-			hreflect: hreflect
+			hreflect: hreflect,
+			zoom: zoom
 		});
 	}
 
-	$('#angle').keyup(action);
+	$('#angle, #zoom').keyup(action);
 	$('#vreflect, #hreflect').change(action);
 });
 </script>
@@ -32,11 +37,14 @@ $(function () {
 
 <body>
 	<h1>test</h1>
-	<div>
+	<div style="display:inline-block; width:250px; height:300px; overflow:hidden; border: black 1px solid;">
 		<img id="cow" src="http://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/CH_cow_2.jpg/250px-CH_cow_2.jpg" alt="" />
 	</div>
 	<div>
 		<label>angle:</label><input id="angle" />
+	</div>
+	<div>
+		<label>zoom:</label><input id="zoom" value="1" />
 	</div>
 	<div>
 		<label>reflect vertical:</label><input id="vreflect" type="checkbox" />

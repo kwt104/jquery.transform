@@ -12,7 +12,8 @@
 			opt = $.extend({
 				angle: 0,
 				vreflect: false,
-				hreflect: false
+				hreflect: false,
+				zoom: 1
 			}, options);
 		
 		$this.each(function () {
@@ -35,6 +36,7 @@
 		var angle = options.angle,
 			vreflect = options.vreflect,
 			hreflect = options.hreflect,
+			zoom = options.zoom,
 			mozTransform = '',
 			webkitTransform = '',
 			oTransform = '',
@@ -45,7 +47,9 @@
 			M11 = Math.cos(radians),
 			M12 = -Math.sin(radians),
 			M21 = Math.sin(radians),
-			M22 = Math.cos(radians);
+			M22 = Math.cos(radians)
+			initWidth = $el.data('initWidth'),
+			initHeight = $el.data('initHeight');
 		
 		if (angle !== 0) {
 			mozTransform += 'rotate(' + (angle % 360) + 'deg)';
@@ -82,7 +86,14 @@
 			msFilter += ' progid:DXImageTransform.Microsoft.Matrix(M11=' + M11 + ', M12=' + M12 + ', M21=' + M21 + ', M22=' + M22 + ', SizingMethod=\'auto expand\')';
 			filter += ' progid:DXImageTransform.Microsoft.Matrix(M11=' + M11 + ', M12=' + M12 + ', M21=' + M21 + ', M22=' + M22 + ', SizingMethod=\'auto expand\')';
 		}
-			
+		
+		
+		
+		//handle zoom
+		$el.width(initWidth * zoom);
+		$el.height(initHeight * zoom);
+		
+		
 		$el.css('-ms-filter', msFilter);
 		$el.css('filter', filter);
 		$el.css('-moz-transform', mozTransform);
